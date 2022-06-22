@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  spaces: [] || null,
+  spaceDetails: {} || null,
   loading: false,
   message: null,
 };
@@ -9,6 +11,9 @@ export const appStateSlice = createSlice({
   name: "appState",
   initialState,
   reducers: {
+    getSpaces: (state, action) => {
+      state.spaces = action.payload;
+    },
     appLoading: (state) => {
       state.loading = true;
     },
@@ -24,7 +29,7 @@ export const appStateSlice = createSlice({
   },
 });
 
-export const { appLoading, appDoneLoading, setMessage, clearMessage } =
+export const { appLoading, appDoneLoading, setMessage, clearMessage, getSpaces } =
   appStateSlice.actions;
 
 export default appStateSlice.reducer;
