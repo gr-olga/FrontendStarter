@@ -1,36 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-  spaces: [] || null,
-  spaceDetails: {} || null,
-  loading: false,
-  message: null,
+    spaces: [] || null,
+    spaceDetails: {} || null,
+    loading: false,
+    message: null,
 };
 
 export const appStateSlice = createSlice({
-  name: "appState",
-  initialState,
-  reducers: {
-    getSpaces: (state, action) => {
-      state.spaces = action.payload;
+    name: "appState",
+    initialState,
+    reducers: {
+        getSpaces: (state, action) => {
+            state.spaces = action.payload;
+        },
+        getSpacesDetails: (state, action) => {
+            state.spaceDetails = action.payload;
+        },
+        appLoading: (state) => {
+            state.loading = true;
+        },
+        appDoneLoading: (state) => {
+            state.loading = false;
+        },
+        setMessage: (state, action) => {
+            state.message = action.payload;
+        },
+        clearMessage: (state, action) => {
+            state.message = null;
+        },
     },
-    appLoading: (state) => {
-      state.loading = true;
-    },
-    appDoneLoading: (state) => {
-      state.loading = false;
-    },
-    setMessage: (state, action) => {
-      state.message = action.payload;
-    },
-    clearMessage: (state, action) => {
-      state.message = null;
-    },
-  },
 });
 
-export const { appLoading, appDoneLoading, setMessage, clearMessage, getSpaces } =
-  appStateSlice.actions;
+export const {appLoading, appDoneLoading, setMessage, clearMessage, getSpaces, getSpacesDetails} =
+    appStateSlice.actions;
 
 export default appStateSlice.reducer;
 

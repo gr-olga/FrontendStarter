@@ -1,5 +1,5 @@
 import {apiUrl, DEFAULT_MESSAGE_TIMEOUT} from "../../config/constants";
-import {setMessage, clearMessage, getSpaces} from "./slice";
+import {setMessage, clearMessage, getSpaces, getSpacesDetails} from "./slice";
 import axios from "axios";
 
 export const showMessageWithTimeout = (
@@ -22,10 +22,20 @@ export const bootstrapLoginState = async (dispatch, getState) => {
       const res = await axios.get(`${apiUrl}/space`
       );
       const spaceData = res.data
-      console.log("data,", spaceData)
+      // console.log("data,", spaceData)
       dispatch(getSpaces(spaceData));
     } catch (e) {
       console.log(e.message)
     }
-
 }
+
+export const fetchSpaceById = (spaceId) => async (dispatch, getState) => {
+    try {
+        const response = await axios.get(`${apiUrl}/space/${spaceId}`);
+       // console.log("one post", response);
+        const detailData = response.data
+        dispatch(getSpacesDetails(detailData))
+    } catch (e) {
+        console.log(e.message);
+    }
+};

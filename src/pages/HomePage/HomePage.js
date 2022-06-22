@@ -1,16 +1,16 @@
 import {useDispatch, useSelector} from "react-redux";
-import {selectSpace} from "../../store/appState/selectors";
+import {selectSpaces} from "../../store/appState/selectors";
 import {useEffect} from "react";
 import {bootstrapLoginState} from "../../store/appState/actions";
 import {Link} from "react-router-dom";
 
 export default function HomePage() {
     const dispatch = useDispatch()
-    const spaces = useSelector(selectSpace)
+    const spaces = useSelector(selectSpaces)
 
     useEffect(() => {
         dispatch(bootstrapLoginState)
-        console.log("hi", bootstrapLoginState)
+        // console.log("hi", bootstrapLoginState)
     }, [dispatch])
 
     return (
