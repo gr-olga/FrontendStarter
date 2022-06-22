@@ -13,6 +13,7 @@ import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
 import HeroBanner from "./components/HeroBanner";
 import HomePage from "./pages/HomePage/HomePage";
+import Space from "./pages/Space/Space";
 
 
 const Other = () => (
@@ -35,7 +36,8 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/" element={<HomePage />}/>
+        <Route exact path="/space/:id" element={<Space />}/>
         <Route path="/other" element={<Other />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
