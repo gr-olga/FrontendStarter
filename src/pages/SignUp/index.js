@@ -3,10 +3,12 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { signUp } from "../../store/user/actions";
-import { selectToken } from "../../store/user/selectors";
+import {selectToken, selectUserId} from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
+import {createUserSpace} from "../../store/appState/slice";
+import {postSpaceFirst} from "../../store/appState/actions";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -14,6 +16,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
+  const userId = useSelector(selectUserId);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,8 +27,9 @@ export default function SignUp() {
 
   function submitForm(event) {
     event.preventDefault();
-
     dispatch(signUp(name, email, password));
+    dispatch(postSpaceFirst(userId))
+   // dispatch(createUserSpace(name))
 
     setEmail("");
     setPassword("");

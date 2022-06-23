@@ -3,7 +3,7 @@ import axios from "axios";
 import { selectToken } from "./selectors";
 import { appLoading, appDoneLoading, setMessage } from "../appState/slice";
 import { showMessageWithTimeout } from "../appState/actions";
-import { loginSuccess, logOut, tokenStillValid } from "./slice";
+import {loginSuccess, logOut, saveUserId, tokenStillValid} from "./slice";
 
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
@@ -15,6 +15,7 @@ export const signUp = (name, email, password) => {
         password,
       });
 
+      dispatch(saveUserId(response.data.user.id))
       dispatch(
         loginSuccess({ token: response.data.token, user: response.data.user })
       );

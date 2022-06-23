@@ -2,7 +2,15 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     spaces: [] || null,
-    spaceDetails: {} || null,
+    spaceDetails: {
+        stories: []
+    } || null,
+    userSpace: {
+        title: '',
+        description: null,
+        backgroundColor: '#ffffff',
+        color: '#000000'
+    },
     loading: false,
     message: null,
 };
@@ -29,6 +37,14 @@ export const appStateSlice = createSlice({
         clearMessage: (state, action) => {
             state.message = null;
         },
+        // createUserSpace: (state, action) => {
+        //     state.userSpace = {
+        //         title: action.payload,
+        //         description: null,
+        //         backgroundColor: '#ffffff',
+        //         color: '#000000'
+        //      }
+        // }
     },
 });
 
