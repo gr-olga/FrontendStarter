@@ -1,4 +1,4 @@
-import { useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {selectSpaces} from "../../store/appState/selectors";
 
 import {Link} from "react-router-dom";

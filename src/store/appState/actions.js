@@ -39,19 +39,3 @@ export const fetchSpaceById = (spaceId) => async (dispatch, getState) => {
     }
 };
 
-export const postSpaceFirst = (userId) => async (dispatch, getState) => {
-    try {
-        const res = await axios.post(`${apiUrl}/space`, {
-            title: "title",
-            description: null,
-            backgroundColor: '#ffffff',
-            color: '#000000',
-            userId: userId
-        });
-        if (res.status === 200) {
-            console.log(res);
-        }
-    } catch (e) {
-        console.log(e.message);
-    }
-};

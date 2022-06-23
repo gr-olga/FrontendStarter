@@ -4,14 +4,14 @@ import "./App.css";
 import Navigation from "./components/Navigation";
 
 import {useDispatch, useSelector} from "react-redux";
-import {selectAppLoading} from "./store/appState/selectors";
+import {selectAppLoading, selectSpaces} from "./store/appState/selectors";
 import {getUserWithStoredToken} from "./store/user/actions";
 import HeroBanner from "./components/HeroBanner";
 import {bootstrapLoginState} from "./store/appState/actions";
 import {Route, Routes} from "react-router-dom";
 import MessageBox from "./components/MessageBox";
 import Loading from "./components/Loading";
-import SignUp from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Space from "./pages/Space/Space";
 import HomePage from "./pages/HomePage/HomePage";
@@ -26,6 +26,7 @@ const Other = () => (
 function App() {
     const dispatch = useDispatch();
     const isLoading = useSelector(selectAppLoading);
+    const spaces = useSelector(selectSpaces)
 
     useEffect(() => {
         dispatch(getUserWithStoredToken());
