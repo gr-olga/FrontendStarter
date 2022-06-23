@@ -21,16 +21,17 @@ export default function MySpace() {
         <div style={{}}>
             <h3>Hello {user.name}</h3>
             <p>{user.space.title}</p>
-            {/*{user.stories.map((s) => {*/}
-            {/*    return (*/}
-            {/*        <div style={{border: "1px solid black"}} key={s.id}>*/}
-            {/*            <p>{s.name}</p>*/}
-            {/*            <h5>{s.content}</h5>*/}
-            {/*            <image src={s.imageUrl}/>*/}
-            {/*            <button onClick={() => console.log("hi")}>Remove story</button>*/}
-            {/*        </div>*/}
-            {/*    )*/}
-            {/*})}*/}
+            {user.stories ?  user.stories.map((s) => {
+                return (
+                    <div style={{border: "1px solid black"}} key={s.id}>
+                        <p>{s.name}</p>
+                        <h5>{s.content}</h5>
+                        <image src={s.imageUrl}/>
+                        <button onClick={() => console.log("hi")}>Remove story</button>
+                    </div>
+                )
+            }) : <h3>Create story</h3>}
+            <button></button>
         </div>
     )
 }

@@ -33,7 +33,7 @@ export const appStateSlice = createSlice({
         },
         removeStory: (state, action) => {
             const id = action.payload
-            state.spaceDetails.stories = state.spaceDetails.stories.filter((s) => s => s.id !== id)
+            state.spaceDetails.stories = state.spaceDetails.stories.filter((s)=> s.id !== id)
         },
         // createUserSpace: (state, action) => {
         //     state.userSpace = {
