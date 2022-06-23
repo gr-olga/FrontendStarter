@@ -53,7 +53,6 @@ export const login = (email, password) => {
                 email,
                 password,
             });
-
             dispatch(
                 loginSuccess({token: response.data.token, user: response.data.user})
             );
@@ -101,7 +100,7 @@ export const getUserWithStoredToken = () => {
             });
 
             // token is still valid
-            dispatch(tokenStillValid({user: response.data}));
+            dispatch(tokenStillValid({user: response.data.user}));
             dispatch(appDoneLoading());
         } catch (error) {
             if (error.response) {

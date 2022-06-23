@@ -5,12 +5,6 @@ const initialState = {
     spaceDetails: {
         stories: []
     } || null,
-    userSpace: {
-        title: '',
-        description: null,
-        backgroundColor: '#ffffff',
-        color: '#000000'
-    },
     loading: false,
     message: null,
 };
@@ -37,6 +31,10 @@ export const appStateSlice = createSlice({
         clearMessage: (state, action) => {
             state.message = null;
         },
+        removeStory: (state, action) => {
+            const id = action.payload
+            state.spaceDetails.stories = state.spaceDetails.stories.filter((s) => s => s.id !== id)
+        },
         // createUserSpace: (state, action) => {
         //     state.userSpace = {
         //         title: action.payload,
@@ -48,7 +46,7 @@ export const appStateSlice = createSlice({
     },
 });
 
-export const {appLoading, appDoneLoading, setMessage, clearMessage, getSpaces, getSpacesDetails} =
+export const {appLoading, appDoneLoading, setMessage, clearMessage, getSpaces, getSpacesDetails, removeStory} =
     appStateSlice.actions;
 
 export default appStateSlice.reducer;

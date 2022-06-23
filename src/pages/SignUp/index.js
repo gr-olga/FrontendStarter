@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import {signUp} from "../../store/user/actions";
-import {selectToken, selectUserId} from "../../store/user/selectors";
+import {selectToken} from "../../store/user/selectors";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {Col} from "react-bootstrap";

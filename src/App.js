@@ -4,7 +4,7 @@ import "./App.css";
 import Navigation from "./components/Navigation";
 
 import {useDispatch, useSelector} from "react-redux";
-import {selectAppLoading, selectSpaces} from "./store/appState/selectors";
+import {selectAppLoading} from "./store/appState/selectors";
 import {getUserWithStoredToken} from "./store/user/actions";
 import HeroBanner from "./components/HeroBanner";
 import {bootstrapLoginState} from "./store/appState/actions";
@@ -15,6 +15,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Space from "./pages/Space/Space";
 import HomePage from "./pages/HomePage/HomePage";
+import MySpace from "./pages/MySpace/MySpace";
 
 
 const Other = () => (
@@ -26,7 +27,7 @@ const Other = () => (
 function App() {
     const dispatch = useDispatch();
     const isLoading = useSelector(selectAppLoading);
-    const spaces = useSelector(selectSpaces)
+
 
     useEffect(() => {
         dispatch(getUserWithStoredToken());
@@ -42,6 +43,7 @@ function App() {
             <Routes>
                 <Route exact path="/" element={<HomePage/>}/>
                 <Route exact path="/space/:id" element={<Space/>}/>
+                <Route exact path="/space/me" element={<MySpace/>}/>
                 <Route path="/other" element={<Other/>}/>
                 <Route path="/signup" element={<SignUp/>}/>
                 <Route path="/login" element={<Login/>}/>

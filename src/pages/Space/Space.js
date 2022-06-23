@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectSpaceDetails, selectSpaceDetailsStories} from "../../store/appState/selectors";
 import {useEffect} from "react";
 import {fetchSpaceById} from "../../store/appState/actions";
-
+import {removeStory} from "../../store/appState/slice";
 
 export default function Space() {
     const dispatch = useDispatch()
@@ -11,7 +11,6 @@ export default function Space() {
     const {id} = params
     const details = useSelector(selectSpaceDetails)
     const stories = useSelector(selectSpaceDetailsStories)
-    console.log(stories);
 
     useEffect(() => {
         dispatch(fetchSpaceById(id))
@@ -33,7 +32,8 @@ export default function Space() {
                     <div style={{border: "1px solid black"}} key={s.id}>
                         <p>{s.name}</p>
                         <h5>{s.content}</h5>
-                        <img src={s.imageUrl}/>
+                        <img src={s.imageUrl} />
+                        <button onClick={()=>(dispatch(removeStory(s.id)))}>Remove story</button>
                     </div>
                 )
             })}
