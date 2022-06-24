@@ -3,7 +3,7 @@ import axios from "axios";
 import {selectToken} from "./selectors";
 import {appDoneLoading, appLoading, setMessage} from "../appState/slice";
 import {showMessageWithTimeout} from "../appState/actions";
-import {addUserStory, loginSuccess, logOut, removeUserStory, tokenStillValid, updateUserSpace} from "./slice";
+import {loginSuccess, logOut, removeUserStory, tokenStillValid} from "./slice";
 
 export const signUp = (name, email, password) => {
     return async (dispatch, getState) => {
@@ -93,7 +93,7 @@ export const getUserSpace = () => {
                 headers: {Authorization: `Bearer ${token}`},
             });
             dispatch(tokenStillValid({user: response.data.user}));
-             dispatch(appDoneLoading());
+            dispatch(appDoneLoading());
         } catch (error) {
             if (error.response) {
                 console.log(error.response.message);
@@ -114,7 +114,7 @@ export const deleteStory = (storyId) => async (dispatch, getState) => {
             {
                 storyId: storyId,
             },
-       dispatch(removeUserStory(storyId))
+            dispatch(removeUserStory(storyId))
         )
     } catch (e) {
         console.log(e.message);
@@ -130,7 +130,7 @@ export const updateSpace = (title, description, backgroundColor, color, spaceId)
                 description: description,
                 backgroundColor: backgroundColor,
                 color: color,
-                spaceId:spaceId
+                spaceId: spaceId
             },
             {headers: {Authorization: `Bearer ${token}`}}
         )

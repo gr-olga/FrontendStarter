@@ -26,12 +26,12 @@ export default function Space() {
 
     return (
         <div>
-            <h4>{details.title}</h4>
+            <h4>  Title : {details.title}</h4>
             {sortedStories.map((s) => {
                 return (
-                    <div style={{border: "1px solid black"}} key={s.id}>
-                        <p>{s.name}</p>
-                        <h5>{s.content}</h5>
+                    <div style={{backgroundColor: details.backgroundColor, color: details.color}} key={s.id}>
+                        <p> stories name : {s.name}</p>
+                        <h5> Content: {s.content}</h5>
                         <img src={s.imageUrl}/>
                     </div>
                 )
