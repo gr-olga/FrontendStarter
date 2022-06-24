@@ -2,6 +2,7 @@ import {apiUrl, DEFAULT_MESSAGE_TIMEOUT} from "../../config/constants";
 import {clearMessage, getSpaces, getSpacesDetails, setMessage} from "./slice";
 import axios from "axios";
 import {selectToken} from "../user/selectors";
+import {addUserStory} from "../user/slice";
 
 export const showMessageWithTimeout = (
     variant,
@@ -53,6 +54,7 @@ export const postNewStory = (name, content, imageUrl, spaceId) => async (dispatc
             {headers: {Authorization: `Bearer ${token}`}}
         )
         const newStory = res.data
+        dispatch(addUserStory(newStory))
         console.log(newStory)
     } catch (e) {
         console.log(e.message);
