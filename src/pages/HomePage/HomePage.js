@@ -3,13 +3,13 @@ import {selectSpaces} from "../../store/appState/selectors";
 
 import {Link} from "react-router-dom";
 import {useEffect} from "react";
-import {bootstrapLoginState} from "../../store/appState/actions";
+import {getSpacesFromApi} from "../../store/appState/actions";
 
 export default function HomePage() {
     const dispatch = useDispatch()
     const spaces = useSelector(selectSpaces)
     useEffect(() => {
-        dispatch(bootstrapLoginState)
+        dispatch(getSpacesFromApi)
     }, [dispatch]);
 
     return (

@@ -83,7 +83,7 @@ export const login = (email, password) => {
     };
 };
 
-export const getUserWithStoredToken = () => {
+export const getUserSpace = () => {
     return async (dispatch, getState) => {
         const token = selectToken(getState());
         if (token === null) return;

@@ -1,14 +1,19 @@
 import {useState} from "react";
+import {postNewStory} from "../../store/appState/actions";
+import {useDispatch} from "react-redux";
 
-export default function AddStory() {
+export default function AddStory(props) {
+    const dispatch = useDispatch()
     const [clickBtn, setClickBtn] = useState(false)
     const [name, setName] = useState("");
     const [content, setContent] = useState("");
     const [image, setImage] = useState("");
-
-
+    const id = props.id
+    console.log(id)
+    console.log(name , content , image)
     const onFormSubmit = (e) => {
         e.preventDefault();
+        dispatch(postNewStory(name, content, image, id))
     };
 
     return (

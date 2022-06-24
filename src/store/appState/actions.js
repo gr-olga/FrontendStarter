@@ -17,7 +17,7 @@ export const showMessageWithTimeout = (
     };
 };
 
-export const bootstrapLoginState = async (dispatch, getState) => {
+export const getSpacesFromApi = async (dispatch, getState) => {
     try {
         const res = await axios.get(`${apiUrl}/space`);
         const spaceData = res.data
@@ -38,4 +38,22 @@ export const fetchSpaceById = (spaceId) => async (dispatch, getState) => {
         console.log(e.message);
     }
 };
+
+export const postNewStory = (name, content, imageUrl, spaceId) => async (dispatch, getState) => {
+
+    try {
+        const res = await axios.post(`${apiUrl}/space/story`,
+            {
+                name: name,
+                content: content,
+                imageUrl: imageUrl,
+                spaceId: spaceId
+            }
+        )
+        const newStory = res.data
+        console.log(newStory)
+    } catch (e) {
+        console.log(e.message);
+    }
+}
 
