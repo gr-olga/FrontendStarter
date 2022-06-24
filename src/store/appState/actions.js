@@ -1,6 +1,7 @@
 import {apiUrl, DEFAULT_MESSAGE_TIMEOUT} from "../../config/constants";
 import {clearMessage, getSpaces, getSpacesDetails, setMessage} from "./slice";
 import axios from "axios";
+import {selectToken} from "../user/selectors";
 
 export const showMessageWithTimeout = (
     variant,
@@ -40,6 +41,7 @@ export const fetchSpaceById = (spaceId) => async (dispatch, getState) => {
 };
 
 export const postNewStory = (name, content, imageUrl, spaceId) => async (dispatch, getState) => {
+    const token = selectToken(getState());
     try {
         const res = await axios.post(`${apiUrl}/space/story`,
             {
@@ -47,7 +49,8 @@ export const postNewStory = (name, content, imageUrl, spaceId) => async (dispatc
                 content: content,
                 imageUrl: imageUrl,
                 spaceId: spaceId
-            }
+            },
+            {headers: {Authorization: `Bearer ${token}`}}
         )
         const newStory = res.data
         console.log(newStory)

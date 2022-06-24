@@ -3,7 +3,7 @@ import axios from "axios";
 import {selectToken} from "./selectors";
 import {appDoneLoading, appLoading, setMessage} from "../appState/slice";
 import {showMessageWithTimeout} from "../appState/actions";
-import {loginSuccess, logOut, tokenStillValid} from "./slice";
+import {loginSuccess, logOut, removeUserStory, tokenStillValid} from "./slice";
 
 export const signUp = (name, email, password) => {
     return async (dispatch, getState) => {
@@ -109,15 +109,13 @@ export const getUserSpace = () => {
 }
 
 export const deleteStory = (storyId) => async (dispatch, getState) => {
-    const spaceId = getState.profile.space.id
     try {
         const res = await axios.delete(`${apiUrl}/space/story`,
             {
                 storyId: storyId,
-                spaceId: spaceId
-            }
+            },
+       dispatch(removeUserStory(storyId))
         )
-
     } catch (e) {
         console.log(e.message);
     }
