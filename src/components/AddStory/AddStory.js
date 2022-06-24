@@ -15,7 +15,6 @@ export default function AddStory(props) {
     const onFormSubmit = (e) => {
         e.preventDefault();
         dispatch(postNewStory(name, content, image, id))
-            window.alert("You post new story")
     };
 
 

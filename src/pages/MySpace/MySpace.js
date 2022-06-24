@@ -3,6 +3,7 @@ import {selectUser} from "../../store/user/selectors";
 import {useEffect} from "react";
 import {deleteStory, getUserSpace} from "../../store/user/actions";
 import AddStory from "../../components/AddStory/AddStory";
+import EditProfile from "../../components/EditProfile/EditProfile";
 
 export default function MySpace() {
     const dispatch = useDispatch()
@@ -13,7 +14,6 @@ export default function MySpace() {
     }, [dispatch])
 
 
-
     console.log(user);
     if (!user)
         return (
@@ -22,9 +22,10 @@ export default function MySpace() {
             </div>
         );
     return (
-        <div style={{border: "1px solid red"}}>
+        <div style={{backgroundColor: user.space.backgroundColor, color: user.space.color}}>
             <h3>Hello {user.name}</h3>
             <p>{user.space.title}</p>
+            <EditProfile id = {user.space.id} space={user.space}/>
             {!user.space.stories || user.space.stories.length < 1 ?
                 (<div/>)
                 :

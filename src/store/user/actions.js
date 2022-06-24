@@ -3,7 +3,7 @@ import axios from "axios";
 import {selectToken} from "./selectors";
 import {appDoneLoading, appLoading, setMessage} from "../appState/slice";
 import {showMessageWithTimeout} from "../appState/actions";
-import {loginSuccess, logOut, removeUserStory, tokenStillValid} from "./slice";
+import {addUserStory, loginSuccess, logOut, removeUserStory, tokenStillValid, updateUserSpace} from "./slice";
 
 export const signUp = (name, email, password) => {
     return async (dispatch, getState) => {
@@ -116,6 +116,27 @@ export const deleteStory = (storyId) => async (dispatch, getState) => {
             },
        dispatch(removeUserStory(storyId))
         )
+    } catch (e) {
+        console.log(e.message);
+    }
+}
+
+export const updateSpace = (title, description, backgroundColor, color, spaceId) => async (dispatch, getState) => {
+    const token = selectToken(getState());
+    try {
+        const res = await axios.put(`${apiUrl}/space`,
+            {
+                title: title,
+                description: description,
+                backgroundColor: backgroundColor,
+                color: color,
+                spaceId:spaceId
+            },
+            {headers: {Authorization: `Bearer ${token}`}}
+        )
+        const newSpace = res.data
+        dispatch(getUserSpace())
+        console.log(newSpace)
     } catch (e) {
         console.log(e.message);
     }
