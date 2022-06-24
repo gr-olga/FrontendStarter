@@ -110,7 +110,7 @@ export const getUserSpace = () => {
 
 export const deleteStory = (storyId) => async (dispatch, getState) => {
     try {
-        const res = await axios.delete(`${apiUrl}/space/story`,
+        const res = await axios.delete(`${apiUrl}/space/${storyId}`,
             {
                 storyId: storyId,
             },

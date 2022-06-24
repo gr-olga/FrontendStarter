@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {postNewStory} from "../../store/appState/actions";
 import {useDispatch} from "react-redux";
+import {deleteStory} from "../../store/user/actions";
 
 export default function AddStory(props) {
     const dispatch = useDispatch()
@@ -14,7 +15,9 @@ export default function AddStory(props) {
     const onFormSubmit = (e) => {
         e.preventDefault();
         dispatch(postNewStory(name, content, image, id))
+            window.alert("You post new story")
     };
+
 
     return (
         <>
