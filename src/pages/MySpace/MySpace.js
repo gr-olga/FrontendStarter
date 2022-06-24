@@ -3,6 +3,8 @@ import {selectUser} from "../../store/user/selectors";
 import {useEffect} from "react";
 import {getUserSpace} from "../../store/user/actions";
 import AddStory from "../../components/AddStory/AddStory";
+import {removeStory} from "../../store/appState/slice";
+import {removeUserStory} from "../../store/user/slice";
 
 export default function MySpace() {
     const dispatch = useDispatch()
@@ -36,13 +38,13 @@ export default function MySpace() {
                                 <p>{s.name}</p>
                                 <h5>{s.content}</h5>
                                 <image src={s.imageUrl}/>
-                                <button onClick={() => console.log("hi")}>Remove story</button>
+                                <button onClick={()=>(dispatch(removeUserStory(s.id)))}>Remove story</button>
                             </div>
                         )
                     }
                 )
             }
-            <AddStory id={user.id}/>
+            <AddStory id={user.space.id}/>
         </div>
     )
 }

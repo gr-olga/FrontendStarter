@@ -40,7 +40,6 @@ export const fetchSpaceById = (spaceId) => async (dispatch, getState) => {
 };
 
 export const postNewStory = (name, content, imageUrl, spaceId) => async (dispatch, getState) => {
-
     try {
         const res = await axios.post(`${apiUrl}/space/story`,
             {
@@ -56,4 +55,8 @@ export const postNewStory = (name, content, imageUrl, spaceId) => async (dispatc
         console.log(e.message);
     }
 }
+
+
+
+
 

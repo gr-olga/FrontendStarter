@@ -106,4 +106,19 @@ export const getUserSpace = () => {
             // dispatch(appDoneLoading());
         }
     };
-};
+}
+
+export const deleteStory = (storyId) => async (dispatch, getState) => {
+    const spaceId = getState.profile.space.id
+    try {
+        const res = await axios.delete(`${apiUrl}/space/story`,
+            {
+                storyId: storyId,
+                spaceId: spaceId
+            }
+        )
+
+    } catch (e) {
+        console.log(e.message);
+    }
+}

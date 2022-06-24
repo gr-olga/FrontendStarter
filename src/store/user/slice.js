@@ -5,6 +5,7 @@ const initialState = {
     profile: null,
 };
 
+
 export const userSlice = createSlice({
     name: "user",
     initialState,
@@ -22,9 +23,14 @@ export const userSlice = createSlice({
         tokenStillValid: (state, action) => {
             state.profile = action.payload.user;
         },
+        removeUserStory: (state, action) => {
+            const id = action.payload
+            state.profile.space.stories.find((s) => s.id !== id)
+        },
     },
 });
 
-export const {loginSuccess, logOut, tokenStillValid} = userSlice.actions;
+
+export const {loginSuccess, logOut, tokenStillValid, removeUserStory} = userSlice.actions;
 
 export default userSlice.reducer;
