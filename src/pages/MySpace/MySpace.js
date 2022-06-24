@@ -34,7 +34,7 @@ export default function MySpace() {
                             <div style={{border: "1px solid black"}} key={s.id}>
                                 <p>{s.name}</p>
                                 <h5>{s.content}</h5>
-                                <img src={s.imageUrl}/>
+                                <img src={s.imageUrl} />
                                 <button onClick={()=>dispatch(deleteStory(s.id))}>Remove story</button>
                             </div>
                         )

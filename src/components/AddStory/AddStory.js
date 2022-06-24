@@ -42,15 +42,17 @@ export default function AddStory(props) {
                                     value={content}
                                     onChange={(e) => setContent(e.target.value)}
                                 />
+
                             </div>
                             <div>
                                 <label>Image url</label>
                                 <input
-                                    type="text"
+                                     type="text"
                                     value={image}
                                     alt="st"
                                     onChange={(e) => setImage(e.target.value)}
                                 />
+                                <img id="blah" src={image} alt="your image" width={300}/>
                             </div>
                             <button type="submit">Post</button>
                             <button onClick={() => setClickBtn(false)}>Discard</button>
