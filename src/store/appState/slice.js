@@ -35,6 +35,7 @@ export const appStateSlice = createSlice({
             const id = action.payload
             state.spaceDetails.stories = state.spaceDetails.stories.filter((s)=> s.id !== id)
         },
+
         // createUserSpace: (state, action) => {
         //     state.userSpace = {
         //         title: action.payload,

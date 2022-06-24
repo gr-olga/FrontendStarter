@@ -85,33 +85,25 @@ export const login = (email, password) => {
 
 export const getUserWithStoredToken = () => {
     return async (dispatch, getState) => {
-        // get token from the state
         const token = selectToken(getState());
-
-        // if we have no token, stop
         if (token === null) return;
-
         dispatch(appLoading());
         try {
-            // if we do have a token,
-            // check wether it is still valid or if it is expired
             const response = await axios.get(`${apiUrl}/auth/me`, {
                 headers: {Authorization: `Bearer ${token}`},
             });
-
-            // token is still valid
             dispatch(tokenStillValid({user: response.data.user}));
-            dispatch(appDoneLoading());
+             dispatch(appDoneLoading());
         } catch (error) {
             if (error.response) {
                 console.log(error.response.message);
             } else {
                 console.log(error);
+                dispatch(logOut());
+                dispatch(appDoneLoading());
             }
-            // if we get a 4xx or 5xx response,
-            // get rid of the token by logging out
-            dispatch(logOut());
-            dispatch(appDoneLoading());
+            // dispatch(logOut());
+            // dispatch(appDoneLoading());
         }
     };
 };

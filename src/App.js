@@ -29,10 +29,10 @@ function App() {
     const isLoading = useSelector(selectAppLoading);
 
 
-    useEffect(() => {
-        dispatch(getUserWithStoredToken());
-        dispatch(bootstrapLoginState)
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(getUserWithStoredToken());
+    //     dispatch(bootstrapLoginState)
+    // }, [dispatch]);
 
 
     return (
